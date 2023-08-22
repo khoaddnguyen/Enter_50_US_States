@@ -27,13 +27,15 @@ while len(guessed_states) < 50:
 
     # save missing states into a csv
     if answer_state == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        # write in list comprehension
+        missing_states = [state for state in all_states if state not in guessed_states]
+        # missing_states = []
+        # for state in all_states:
+        #     if state not in guessed_states:
+        #         missing_states.append(state)
         new_data = pd.DataFrame(missing_states)
         new_data.to_csv("Missed_US_States.csv")
-        break
+        # break
 
     # if answer_state is one of the states in the CSV file
         # if correct
