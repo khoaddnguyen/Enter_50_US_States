@@ -25,6 +25,16 @@ while len(guessed_states) < 50:
     answer_state = screen.textinput(title=f"{len(guessed_states)}/50 States Correct", prompt="What's another state name?").title()
     print(answer_state)
 
+    # save missing states into a csv
+    if answer_state == "Exit":
+        missing_states = []
+        for state in all_states:
+            if state not in guessed_states:
+                missing_states.append(state)
+        new_data = pd.DataFrame(missing_states)
+        new_data.to_csv("Missed_US_States.csv")
+        break
+
     # if answer_state is one of the states in the CSV file
         # if correct
             # create a turtle to write the state name that the x-y coor
